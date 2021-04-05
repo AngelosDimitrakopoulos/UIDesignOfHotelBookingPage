@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 5</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./src/styles.css">
+    <link rel="stylesheet" href="./src/mapstyle.css">
+</head>
+
+<body>
+
+    <div id="top-row">
+        <form autocomplete="off" action="#">
+
+            <div id="search-bar" class="col-10">
+
+                <input list="citiesInput" class="col-12" type="text" placeholder="Search..">
+                <datalist id="citiesInput">
+
+                </datalist>
+            </div>
+            <div id="search-button" class="col-2">
+                <input type="submit" value="Search" class="col-12">
+            </div>
+        </form>
+
+    </div>
+
+    <div id="second-row">
+        <div id="check-in-date" class="col-4">
+            <span>
+                <img src="./img/calender.jpg" alt="calender.jpg" style="width:20px;">
+                <label id="checkinDate">Check-in</label>
+            </span>
+            <span>
+                <input id="checkin" type="date" class="col-8" data-date-inline-picker="true" />
+            </span>
+
+        </div>
+        <div id="check-out-date" class="col-4">
+            <span>
+                <img src="./img/calender.jpg" alt="calender.jpg" style="width:20px;">
+                <label id="checkoutDate">Check-out</label>
+            </span>
+            <span>
+                <!-- <input type="text" id="datepicker2"> -->
+                <input id="checkout" type="date" class="col-8" data-date-inline-picker="true" />
+            </span>
+
+        </div>
+        <div id="rooms" class="col-4">
+            <select style="text-align-last: center;" class="col-12" name="roomtypes" id="roomtype">
+                <!-- Fill it dynamically from JavaScript -->
+            </select>
+        </div>
+    </div>
+
+    <div id="third-row">
+        <div id="price-bar" class="col-4">
+            <div id="price-bar-title">
+               <span>Price : </span> 
+               <span id="demo" style="display: flex; justify-content: center; float: right;"></span>
+                
+            </div>
+            <div class="slidecontainer">
+
+            </div>
+        </div>
+
+        <div id="property-type" class="col-2">
+            <div id="property-type-title">Property type</div>
+            <div id="property-type-value">
+                <select style="text-align-last: center;" class="col-12" name="starsratings" id="starsrating" value="all"  onchange="myFunction1()">
+                    <option value="all">All</option>
+                    <!-- Fill it dynamically from JavaScript -->
+                </select>
+            </div>
+        </div>
+        <div id="guest-rating" class="col-2">
+            <div id="guest-rating-title">Guest rating</div>
+            <div id="guest-rating-value">
+                <select style="text-align-last: center;" class="col-12" name="guestratings" id="guestrating" value="all"  onchange="myFunction2()">
+                    <option value="all">All</option>
+                    <!-- Fill it dynamically from JavaScript -->
+                </select>
+            </div>
+        </div>
+        <div id="hotel-location" class="col-2">
+            <div id="hotel-location-title">Hotel location</div>
+            <div id="hotel-location-value">
+                <select style="text-align-last: center;" class="col-12" name="hotellocations" id="hotellocation" value="all"  onchange="myFunction3()">
+                    <option value="all">All</option>
+                    <!-- Fill it dynamically from JavaScript -->
+                </select>
+            </div>
+        </div>
+        <div id="filters" class="col-2">
+            <div id="filters-title">filters</div>
+            <div id="filters-value">
+                <select style="text-align-last: center;" class="col-12" name="hotelfilters" id="hotelfilter">
+                    <option selected disabled hidden>Select</option>
+                    <!-- Fill it dynamically from JavaScript -->
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div id="fourth-row">
+        <div id="map" class="col-3">
+            <button id="myBtn">View Map</button>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <iframe id="bigMap"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d83998.94722687619!2d2.277019841665155!3d48.8588377391234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sgr!4v1554987763683!5m2!1sen!2sgr"
+                        height="400" width="90">View Map
+                    </iframe>
+                </div>
+
+            </div>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d83998.94722687619!2d2.277019841665155!3d48.8588377391234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sgr!4v1554987763683!5m2!1sen!2sgr"
+                height="40" width="320">View Map</iframe>
+        </div>
+        <div id="fourth-row-blank" class="col-4"></div>
+        <div id="sorting" class="col-5">
+            <span id="sorting-title" class="col-3">Sort by</span>
+            <span id="sorting-value" class="col-8">
+                <!-- <select style="text-align-last: center;" class="col-12" name="hotelsortings" id="hotelsorting" value="All Recommendations"  onchange="myFunction4()"> -->
+                <select style="text-align-last: center;" class="col-12" name="hotelsortings" id="hotelsorting" value="All Recommendations">
+                    <option selected disabled hidden>Our recomendations</option>
+                    <option value="All Recommendations">All Recommendations</option>
+                    <!-- Fill it dynamically from JavaScript -->
+                </select>
+            </span>
+        </div>
+    </div>
+
+    <div class="container" style="padding: 5px;"></div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+        </script>
+
+    <script src="./src/map.js"></script>
+    <script src="./src/slider.js"></script>
+    <script src="./src/topRow.js"></script>
+    <script src="./src/dropdowns.js"></script>
+    <script src="./src/filters.js"></script>
+    <!-- <script src="./src/sorting.js"></script> -->
+    <script src="./src/hotels.js"></script>
+</body>
+
+</html>
